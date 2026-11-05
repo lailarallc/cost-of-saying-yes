@@ -108,7 +108,7 @@ This arc fixes all of the above.
   "retailers": [
     {
       "key": "walmart",
-      "label": "Walmart",
+      "label": "National mass retailer",
       "trough_value": -36000,
       "trough_month": 4,
       "break_even_month": 9,

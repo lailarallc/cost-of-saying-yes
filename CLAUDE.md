@@ -4,7 +4,7 @@
 
 A CFO-credible interactive tool that models the actual first-year economics of a major retailer launch for $3M–$20M specialty food brands. The core insight: everyone evaluates the "yes" decision on revenue projections, but nobody models the cost side — slotting fees, free fills, learning-curve chargebacks, deduction erosion, cash conversion delay. The tool makes the invisible cash trough visible with a month-by-month cumulative cash flow chart, a Cinderhaven Walmart case study, and a downloadable CFO-grade Excel model. Done means: deployed, publicly accessible, sharp enough that a real CFO trusts the numbers.
 
-**Business question this project answers:** For a $3M–$20M specialty food brand considering a major retailer (Walmart, Costco, Whole Foods, regional chain): what does saying yes actually cost in the first 12 months, and when does the investment break even?
+**Business question this project answers:** For a $3M–$20M specialty food brand considering a major retailer (national mass retailer, club retailer, natural grocer, regional chain): what does saying yes actually cost in the first 12 months, and when does the investment break even?
 
 ## Stack and tools
 

@@ -45,7 +45,7 @@ quarto" or "scope, scrollytelling, decoration"]
 
 ### 2026-05-27 — Model trough month diverges from Cinderhaven validated fixture
 
-**Attempted:** Running the calculator with Cinderhaven inputs (1,200 doors, 4 SKUs, $1.00 wholesale, $0.45 COGS, 2.0 units/door/week, Walmart defaults) and comparing to validated fixture numbers.
+**Attempted:** Running the calculator with Cinderhaven inputs (1,200 doors, 4 SKUs, $1.00 wholesale, $0.45 COGS, 2.0 units/door/week, national mass retailer defaults) and comparing to validated fixture numbers.
 
 **Why it didn't work:** The model places the cash trough at month 2; the Cinderhaven fixture records it at month 4. The model treats upfront costs (free fills + new store allowances) as a pre-launch lump sum, causing the trough to hit immediately in months 1-2 before any cash arrives. In reality, these may be deducted from the first invoice, pushing the trough later.
 

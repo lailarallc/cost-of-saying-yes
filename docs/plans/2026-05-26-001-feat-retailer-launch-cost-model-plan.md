@@ -232,8 +232,8 @@ Dict keyed by `"walmart"` and `"whole_foods"`. Each entry:
 - `trade_spend_rate` (0.12 Walmart, 0.10 Whole Foods)
 - `chargeback_rate_learning` (months 1-3: 0.03)
 - `chargeback_rate_steady` (months 4-12: 0.01)
-- `new_store_allowance_per_sku_per_door` (Walmart: $10, Whole Foods: $0 — uses slotting instead)
-- `slotting_per_sku` (Walmart: $0, Whole Foods: $5,000)
+- `new_store_allowance_per_sku_per_door` (National mass retailer: $10, natural grocer: $0 — uses slotting instead)
+- `slotting_per_sku` (National mass retailer: $0, natural grocer: $5,000)
 - `free_fill_case_cogs_per_sku_per_door` (derived from COGS × units_per_case)
 - `units_per_case` (4 — drives free fill calculation; user can override)
 - `broker_commission_rate` (0.05)
@@ -517,7 +517,7 @@ return StreamingResponse(buffer, media_type="...", headers={...})
 
 ---
 
-### U8. Cinderhaven Walmart case study section
+### U8. Cinderhaven national mass retailer case study section
 
 **Goal:** Add a static case study section below the interactive tool — validated numbers table, before/after framing, Economist-voice narrative.
 
@@ -553,7 +553,7 @@ The case study is pure static HTML. No JavaScript, no dynamic rendering. Validat
 | **Net Year 1 Cash Impact** | **-$36,320** |
 | **Peak Cash Trough (Month 4)** | **-$165,000** [superseded 2026-07: original (incorrect) target; corrected model produces **-$156,352 at Month 1**] |
 
-**Voice:** Sober, declarative, data-forward. "The brand requires $165,000 in working capital to fund the Walmart launch through Month 4. Revenue recognition and cash collection are not the same thing." No marketing language. [superseded 2026-07: the $165,000 / Month 4 figures in this example voice were the original incorrect target; the corrected model produces -$156,352 at Month 1.]
+**Voice:** Sober, declarative, data-forward. "The brand requires $165,000 in working capital to fund the national mass retailer launch through Month 4. Revenue recognition and cash collection are not the same thing." No marketing language. [superseded 2026-07: the $165,000 / Month 4 figures in this example voice were the original incorrect target; the corrected model produces -$156,352 at Month 1.]
 
 **Test scenarios:**
 - Case study section renders below the interactive tool
