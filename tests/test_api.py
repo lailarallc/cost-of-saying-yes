@@ -231,6 +231,34 @@ class TestCompareEndpoint:
         keys = {r["key"] for r in data["retailers"]}
         assert keys == {"walmart", "whole_foods", "costco", "regional_chain"}
 
+    def test_labels_come_from_shared_display_map(self):
+        """2026-11-05 rule: the compare table shows the shared display label, never
+        the real retailer name, beside its dollar figures."""
+        import json
+        from pathlib import Path
+        shared = json.loads((Path(__file__).resolve().parent.parent / "reference"
+                             / "retailer_display_labels.json").read_text(encoding="utf-8"))
+        real_names = {v["name"] for v in shared["retailers"].values() if v["name"] != v["label"]}
+        expected = {
+            "walmart": shared["retailers"]["RET-WALMART"]["label"],
+            "whole_foods": shared["retailers"]["RET-WHOLEFOODS"]["label"],
+            "costco": shared["retailers"]["RET-COSTCO"]["label"],
+            "regional_chain": "regional chain",
+        }
+        data = client.post("/api/compare", json=COMPARE_PAYLOAD).json()
+        for r in data["retailers"]:
+            assert r["label"].lower() == expected[r["key"]]
+            assert r["label"] not in real_names
+
+    def test_dropdown_options_match_display_labels(self):
+        """The static retailer dropdown must show the same labels the API serves."""
+        import re
+        from pathlib import Path
+        from app import RETAILER_LABELS
+        html = (Path(__file__).resolve().parent.parent / "static" / "index.html").read_text(encoding="utf-8")
+        options = dict(re.findall(r'<option value="(\w+)"[^>]*>([^<]+)</option>', html))
+        assert options == RETAILER_LABELS
+
 
 # ---------------------------------------------------------------------------
 # GET /api/health

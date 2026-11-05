@@ -1,9 +1,11 @@
+import json
 import logging
 import math
 import mimetypes
 import os
 from dataclasses import asdict
 from io import BytesIO
+from pathlib import Path
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response, StreamingResponse
@@ -214,12 +216,24 @@ def compute_line_items(inp: ScenarioInput, scenario: str) -> list[dict]:
     return items
 
 
-RETAILER_LABELS = {
-    "walmart": "Walmart",
-    "whole_foods": "Whole Foods",
-    "costco": "Costco",
-    "regional_chain": "Regional Chain",
-}
+# Public display labels (2026-11-05 rule): a Cinderhaven dollar figure never sits
+# beside a real retailer name, so the compare table shows the shared label from
+# the vendored reference/retailer_display_labels.json. Display only: the keys,
+# defaults and math are unchanged. regional_chain is a generic tier, not a named
+# partner, so it has no entry in the shared map.
+_LABELS_PATH = Path(__file__).resolve().parent / "reference" / "retailer_display_labels.json"
+_LABEL_IDS = {"walmart": "RET-WALMART", "whole_foods": "RET-WHOLEFOODS", "costco": "RET-COSTCO"}
+
+
+def _load_retailer_labels() -> dict:
+    shared = json.loads(_LABELS_PATH.read_text(encoding="utf-8"))["retailers"]
+    labels = {key: shared[rid]["label"] for key, rid in _LABEL_IDS.items()}
+    labels["regional_chain"] = "regional chain"
+    # Table and dropdown entries are capitalized; the map stores mid-sentence case.
+    return {key: label[0].upper() + label[1:] for key, label in labels.items()}
+
+
+RETAILER_LABELS = _load_retailer_labels()
 
 
 class CompareInput(LaunchInputBase):

@@ -210,6 +210,24 @@ Each entry:
 
 [Voice, style, terminology decisions specific to this project]
 
+### 2026-11-05: Retailer names render as the shared display labels
+- **Why:** Owner rule (2026-11-05, lailara-website DECISIONS): on public surfaces a
+  Cinderhaven dollar figure never shares a sentence, table row, chart label, card,
+  tooltip or download row with a real trade-partner name. The default scenario is
+  the Cinderhaven launch, so every retailer shown beside its figures uses the label
+  from the vendored `reference/retailer_display_labels.json` (refreshed by
+  `scripts/refresh_canonical.py`, enforced on text by `scripts/check_retailer_labels.py`).
+- **Scope:** Display only. `app.py` `RETAILER_LABELS` reads the JSON (compare table);
+  the dropdown option text in `static/index.html` repeats those labels and
+  `tests/test_api.py` asserts they match; case-study prose and the
+  `RETAILER_CONTEXT` callout use the lowercase label mid-sentence. Keys
+  (`walmart`, `whole_foods`, `costco`), defaults and math are unchanged.
+  `regional_chain` is a generic tier with no map entry and shows "Regional chain".
+  The compare table sorts by net cash Y1, never by name.
+- **Do not:** Put a real retailer or distributor name in rendered copy, the compare
+  table, the dropdown or the Excel workbook. Edit the label in the platform's JSON
+  and re-vendor, not in this repo.
+
 ---
 
 ## Reversed / Superseded
